@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="hangman">
+<head>
+<title>Hangman</title>
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>-->
+<script src="js/angular.min.js"></script>
+<script src="js/script.js"></script>
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body ng-controller="mainController">
+	<!--<h5>this is get letter {{getLetter}}</h5>-->
+	<img src="img/120px-Hangman-{{getLetter.tries}}.png" />
+	<h1>{{ getLetter.strWord }}</h1> 
+	<h3>Tries remaining: {{ getLetter.tries }}</h3>
+	<div id="letters">
+		<ul>
+			<li ng-repeat="letter in getLetter.letters">
+				<button ng-click="postLetter(letter, getLetter)">{{ letter }}</button>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>
