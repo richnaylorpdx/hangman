@@ -14,6 +14,7 @@ This will start the application. Please note that for development, Ive been runn
 
 To play the game, open a web browser and point it to the following URL:
     - http://localhost:3000
+    - NOTES: this app has only been tested in Google Chrome browser version 56 on Mac
 
 This will initialize the game. 
 
