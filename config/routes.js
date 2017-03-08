@@ -41,6 +41,8 @@ module.exports = function (app, config) {
     // to the API (e.g. in case you use sessions)
     res.setHeader('Access-Control-Allow-Credentials', true);
 
+    res.setHeader('charset', 'utf-8');
+
     // Pass to next layer of middleware
     next();
   });
@@ -84,12 +86,12 @@ function wordcheck(res, gameVals) {
         "tries"   : "",
         "letters" : ""
       };
-    } else if(gameVals.tries == 0) {
+    } else if(gameVals.tries == 1) {
       var objGameUpdate = {
         "strWord" : "You Lose",
         "word"    : gameVals.word,
         "id"      : gameVals.id,
-        "tries"   : gameVals.tries,
+        "tries"   : 0,
         "letters" : ""
       };
     } else if(word.indexOf(gameVals.letter) != -1) {
