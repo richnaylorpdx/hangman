@@ -81,7 +81,7 @@ function wordcheck(res, gameVals) {
     if(results == word) {
       var objGameUpdate = {
         "strWord" : "You Won",
-        "word"    : gameVals.word,
+        // "word"    : gameVals.word,
         "id"      : gameVals.id,
         "tries"   : "",
         "letters" : ""
@@ -89,7 +89,7 @@ function wordcheck(res, gameVals) {
     } else if(gameVals.tries == 1) {
       var objGameUpdate = {
         "strWord" : "You Lose",
-        "word"    : gameVals.word,
+        // "word"    : gameVals.word,
         "id"      : gameVals.id,
         "tries"   : 0,
         "letters" : ""
@@ -97,7 +97,7 @@ function wordcheck(res, gameVals) {
     } else if(word.indexOf(gameVals.letter) != -1) {
       var objGameUpdate = {
         "strWord" : results,
-        "word"    : gameVals.word,
+        // "word"    : gameVals.word,
         "id"      : gameVals.id,
         "tries"   : gameVals.tries,
         "letters" : newLetters
@@ -107,7 +107,7 @@ function wordcheck(res, gameVals) {
 
       var objGameUpdate = {
         "strWord" : gameVals.str,
-        "word"    : gameVals.word,
+        // "word"    : gameVals.word,
         "id"      : gameVals.id,
         "tries"   : num -= 1,
         "letters" : newLetters
@@ -122,7 +122,7 @@ function wordcheck(res, gameVals) {
 
     var objSendGameObj = {
       "strWord" : strAsterisk(objGetGameObj.word.length),
-      "word"    : objGetGameObj.word,
+      // "word"    : objGetGameObj.word,
       "id"      : objGetGameObj.id,
       "tries"   : 8,
       "letters" : letters

@@ -28,7 +28,7 @@ angular.module('hangman', [])
 			 sendletter = {
 				"letter"	: data,
 				"str"			: getLetter.strWord,
-				"word" 		: getLetter.word,
+				// "word" 		: getLetter.word,
 				"id" 			: getLetter.id,
 				"tries"		: getLetter.tries,
 				"letters"	: getLetter.letters
