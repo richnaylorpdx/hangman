@@ -83,7 +83,7 @@ function wordcheck(res, gameVals) {
         "strWord" : "You Won",
         // "word"    : gameVals.word,
         "id"      : gameVals.id,
-        "tries"   : "",
+        "tries"   : gameVals.tries,
         "letters" : ""
       };
     } else if(gameVals.tries == 1) {
