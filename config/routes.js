@@ -45,13 +45,15 @@ module.exports = function (app, config) {
 		res.send(uuidV4());
   });
 
-  app.post('/api/checkword', function(req,res) {
-    wordcheck(res, req.body);
-  });
+  app.route('/api/checkword')
+  
+    .post(function(req,res) {
+      wordcheck(res, req.body);
+    })
 
-  app.get('/api/checkword', function(req,res) {
-    wordcheck(res);
-  });
+    .get(function(req,res) {
+      wordcheck(res);
+    });
 
 }; // modexports end -->
 
