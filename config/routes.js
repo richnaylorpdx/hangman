@@ -28,13 +28,14 @@ var testword = [
 module.exports = function (app, config) {
 
   app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-    res.setHeader('Access-Control-Allow-Credentials', true);
+    // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    // res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    // res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    // res.setHeader('Access-Control-Allow-Credentials', true);
+    res.setHeader('Content-Type', 'application/json');
+
     // res.setHeader('charset', 'utf-8');
     // res.set({ 'content-type': 'application/json;charset=utf-8' });
-    res.setHeader('Content-Type', 'application/json');
 
     next();
   });
@@ -45,22 +46,14 @@ module.exports = function (app, config) {
   });
 
   app.post('/api/checkword', function(req,res) {
-    console.log("this is checkword " + JSON.stringify(req.body));
-    checkword(res, req.body);
+    wordcheck(res, req.body);
   });
 
   app.get('/api/checkword', function(req,res) {
-    res.send(wordcheck(res));
-    // res.send("works works works");
+    wordcheck(res);
   });
 
 }; // modexports end -->
-
-function checkword(res, letter) {
-  if(letter) {
-    wordcheck(res, letter);
-  }  
-}
 
 function wordcheck(res, gameVals) {
   if(gameVals) {
@@ -73,7 +66,6 @@ function wordcheck(res, gameVals) {
     if(results == word) {
       var objGameUpdate = {
         "strWord" : "You Won",
-        // "word"    : gameVals.word,
         "id"      : gameVals.id,
         "tries"   : gameVals.tries,
         "letters" : ""
@@ -81,7 +73,6 @@ function wordcheck(res, gameVals) {
     } else if(gameVals.tries == 1) {
       var objGameUpdate = {
         "strWord" : "You Lose",
-        // "word"    : gameVals.word,
         "id"      : gameVals.id,
         "tries"   : 0,
         "letters" : ""
@@ -89,7 +80,6 @@ function wordcheck(res, gameVals) {
     } else if(word.indexOf(gameVals.letter) != -1) {
       var objGameUpdate = {
         "strWord" : results,
-        // "word"    : gameVals.word,
         "id"      : gameVals.id,
         "tries"   : gameVals.tries,
         "letters" : newLetters
@@ -99,14 +89,13 @@ function wordcheck(res, gameVals) {
 
       var objGameUpdate = {
         "strWord" : gameVals.str,
-        // "word"    : gameVals.word,
         "id"      : gameVals.id,
         "tries"   : num -= 1,
         "letters" : newLetters
       };
     }
     
-    res.json(objGameUpdate);
+    res.send(objGameUpdate);
   } else {
     // if gameVals has nothing, retrun random obj fr array 
     var objGetGameObj = testword[(Math.floor(Math.random()* testword.length) + 0)];
@@ -120,7 +109,7 @@ function wordcheck(res, gameVals) {
       "letters" : letters
     };
 
-    res.json(objSendGameObj);
+    res.send(objSendGameObj);
   }
 }
 
