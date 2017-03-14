@@ -48,7 +48,11 @@ module.exports = function (app, config) {
   app.route('/api/checkword')
   
     .post(function(req,res) {
-      wordcheck(res, req.body);
+      if(!req.body) {
+        res.sendStatus(500);
+      } else {
+        wordcheck(res, req.body);
+      }
     })
 
     .get(function(req,res) {
@@ -96,8 +100,9 @@ function wordcheck(res, gameVals) {
         "letters" : newLetters
       };
     }
-    
-    res.send(objGameUpdate);
+
+    res.json(objGameUpdate);
+
   } else {
     // if gameVals has nothing, retrun random obj fr array 
     var objGetGameObj = testword[(Math.floor(Math.random()* testword.length) + 0)];
@@ -111,7 +116,7 @@ function wordcheck(res, gameVals) {
       "letters" : letters
     };
 
-    res.send(objSendGameObj);
+    res.json(objSendGameObj);
   }
 }
 

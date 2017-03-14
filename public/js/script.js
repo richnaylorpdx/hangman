@@ -5,11 +5,13 @@ angular.module('hangman', [])
 	});
 
 	$scope.postLetter = function(data, getLetter) {
-		// console.log("this is the sent value " + data + " get letter info " + JSON.stringify(getLetter)); 
 		console.log(getLetter.word);
 		checkWord.check(data, getLetter)
 		.success(function(data) {
 			$scope.getLetter = data;
+		})
+		.error(function(err) {
+			return err;
 		});
 	};
 
@@ -28,7 +30,6 @@ angular.module('hangman', [])
 			 sendletter = {
 				"letter"	: data,
 				"str"			: getLetter.strWord,
-				// "word" 		: getLetter.word,
 				"id" 			: getLetter.id,
 				"tries"		: getLetter.tries,
 				"letters"	: getLetter.letters
